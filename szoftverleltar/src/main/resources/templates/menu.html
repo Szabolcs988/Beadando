@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <style>
+        .btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 10px;
+        }
+        .btn:hover {
+            background-color: #218838;
+        }
+
+    </style>
+</head>
+<body>
+
+<div xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+    <div>
+    <span sec:authorize="isAnonymous()">
+        <a th:href="@{/}" class="btn">Főoldal</a>
+        <a th:href="@{/home}" class="btn">Bejelentkezés</a>
+        <a th:href="@{/regisztral}" class="btn">Regisztrál</a>
+        <a th:href="@{/kapcsolat}" class="btn">Kapcsolat</a>
+        <a th:href="@{/uzenetek}" class="btn">Üzenetek</a>
+    </span>
+        <span sec:authorize="isAuthenticated()">
+        <a th:href="@{/home}" class="btn">Főoldal</a>
+        <a th:href="@{/szoftverek}" class="btn">Szoftverek</a>
+
+        <a th:href="@{/uzenetek}" class="btn">Üzenetek</a>
+        <a th:href="@{/logout}" class="btn" >Logout</a>
+
+    </span>
+        <span sec:authorize="hasRole('ROLE_ADMIN')">
+        <a th:href="@{/admin/home}" class="btn">Admin</a>
+    </span>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <h3>Üdvözölünk kedves, <span sec:authentication="principal.username">User</span></h3>
+
+    </div>
+</div>
+
+</body>
+</html>
