@@ -1,14 +1,35 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Home</title>
     <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
 
-<div th:insert="menu"></div>
-<h1>Csak az Admin láthatja ezt az oldalt</h1>
+    <style>
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+
+
+<body>
+<header>
+    <div th:insert="menu"></div>
+</header>
+<main>
+    <div class="hero">
+        <h1>Admin oldal</h1>
+    </div>
+</main>
+<footer>
+    <p>&copy; 2024 Software Inventory Solutions</p>
+</footer>
 
 </body>
 </html>

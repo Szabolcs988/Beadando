@@ -66,7 +66,7 @@
 </header>
 <h1>Kapcsolatfelvételi Űrlap</h1>
 <form action="#" th:action="@{/ment}" th:object="${kapcsolat}" method="post">
-    <p>Név: <input type="text" th:field="*{bekuldo}" required /></p>
+    <p>Név: <input type="text" th:field="*{bekuldo}" readonly="true" required /></p>
     <p>Üzenet: <input type="text" th:field="*{uzenet}" required /></p>
     <p>
         <input type="submit" value="Küldés" />

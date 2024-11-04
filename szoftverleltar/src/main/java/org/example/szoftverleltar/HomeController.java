@@ -1,5 +1,7 @@
 package org.example.szoftverleltar;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -69,22 +71,32 @@ public class HomeController {
         return "szoftverek";
     }
 
-    @GetMapping("/kapcsolat")
-    public String Ujkapcsolat(Model model) {
-        model.addAttribute("kapcsolat", new Kapcsolat());
-        return "kapcsolat";
-    }
-
     @Autowired
     private KapcsolatRepository kapcsolatRepository;
+
+    @GetMapping("/kapcsolat")
+    public String Ujkapcsolat(Model model) {
+        Kapcsolat kapcsolat = new Kapcsolat();
+
+        // Ellenőrizni, hogy a felhasználó be van-e jelentkezve
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null && auth.isAuthenticated() && !auth.getPrincipal().equals("anonymousUser")) {
+            String email = auth.getName(); // E-mail cím a bejelentkezett felhasználóhoz
+            userRepo.findByEmail(email).ifPresent(user -> kapcsolat.setBekuldo(user.getName()));
+        } else {
+            kapcsolat.setBekuldo("Vendég");
+        }
+
+        model.addAttribute("kapcsolat", kapcsolat);
+        return "kapcsolat";
+
+
+    }
     @PostMapping(value="/ment")
 
     public String mentKapcsolat(@ModelAttribute Kapcsolat kapcsolat, RedirectAttributes redirAttr){
-
         kapcsolatRepository.save(kapcsolat);
-
         return "redirect:/";
-
     }
 
     @GetMapping("/uzenetek")

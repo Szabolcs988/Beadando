@@ -2,12 +2,25 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Regisztrációs hiba</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-<div th:insert="menu"></div>
-<h1 th:text="${uzenet}" />
-<a href="/regisztral">Próbálja újra.</a>
+<header>
+    <div th:insert="menu"></div>
+</header>
+
+<main>
+    <h1 th:text="${uzenet}" />
+    <a href="/regisztral">Próbálja újra.</a>
+</main>
 </body>
 </html>

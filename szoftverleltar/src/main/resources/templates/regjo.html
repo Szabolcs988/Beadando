@@ -3,9 +3,23 @@
 <head>
     <title>Sikeres bejelentkezés</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+    </style>
+
 </head>
 <body>
-<div th:insert="menu"></div>
-<h1 th:utext="'A regisztrációja sikeres. <br/> Azonosítója: ' + ${id}" />
+
+<header>
+    <div th:insert="menu"></div>
+</header>
+<main>
+    <h1 th:utext="'A regisztrációja sikeres. <br/> Azonosítója: ' + ${id}" />
+</main>
 </body>
 </html>
