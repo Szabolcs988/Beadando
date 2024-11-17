@@ -33,7 +33,7 @@ public class WebSecurityConfig {
 
                                 .requestMatchers("/resources/**", "/","/home","szoftverek").authenticated()
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
-                                .requestMatchers("/images/**", "/css/**", "/js/**", "/webjars/**","/regisztral","/","/regisztral_feldolgoz","/uzenetek","/kapcsolat","/ment","/api/**").permitAll()
+                                .requestMatchers("/images/**", "/css/**", "/js/**", "/webjars/**","/regisztral","/","/regisztral_feldolgoz","/uzenetek","/kapcsolat","/ment").permitAll()
 
                 )
                 .formLogin(
